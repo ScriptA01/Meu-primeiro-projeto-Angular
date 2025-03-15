@@ -1,0 +1,27 @@
+.floating-button {
+    position: fixed;
+    right: 20px;
+    bottom: 80px;
+    width: auto; /* Ajusta conforme o texto */
+    padding: 10px 20px;
+    background-color: #087469;
+    color: white;
+    border: none;
+    border-radius: 50px; /* Bordas arredondadas */
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre o ícone e o texto */
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.floating-button i {
+    font-size: 18px;
+}
+
+.floating-button:hover {
+    background-color: #065a50;
+    transform: scale(1.05);
+}

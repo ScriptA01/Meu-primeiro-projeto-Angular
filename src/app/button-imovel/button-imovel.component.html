@@ -1,1 +1,11 @@
 <button class="floating-button" (click)="greetForCadastro()">Adicionar Imóvel</button>
+
+<div class="posicaoForm">
+  @defer (when mostrarCadastro) {
+    <app-formulario-cadastro></app-formulario-cadastro>
+  } @loading {
+    <p>Carregando...</p>
+  }
+
+</div>
+

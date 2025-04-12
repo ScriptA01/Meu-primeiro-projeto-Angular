@@ -17,6 +17,7 @@ export class FormularioCadastroComponent {
   proprietario: string = '';
   descricao: string = '';
   imagem: File | null = null;
+  imagemBase64: string = ''; // 👈 nova variável
 
   constructor(private imovelService: ImovelService) {}
 
@@ -24,6 +25,13 @@ export class FormularioCadastroComponent {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
       this.imagem = input.files[0];
+
+      // 👇 Lê a imagem e converte em base64
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagemBase64 = reader.result as string;
+      };
+      reader.readAsDataURL(this.imagem);
     }
   }
 
@@ -32,8 +40,8 @@ export class FormularioCadastroComponent {
       endereco: this.endereco,
       numero: this.numero,
       proprietario: this.proprietario,
-      descricao: this.descricao
-      // imagem: this.imagem // ❌ removido por enquanto
+      descricao: this.descricao,
+      imagem: this.imagemBase64 // 👈 agora vai em JSON!
     };
 
     console.log('📦 Dados do formulário:', dados_formulario);

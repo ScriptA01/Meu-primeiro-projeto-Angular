@@ -1,0 +1,12 @@
+<div class="carrossel-container">
+  <div class="carrossel">
+    <div class="card" *ngFor="let imovel of imoveis">
+      <img [src]="imovel.imagem" alt="Imagem do imóvel" />
+      <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
+    </div>
+  </div>
+</div>
+  
+  <ng-template #carregando>
+    <p>Carregando imóveis...</p>
+  </ng-template>

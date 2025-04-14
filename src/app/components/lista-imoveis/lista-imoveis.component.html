@@ -1,12 +1,33 @@
-<div class="carrossel-container">
-  <div class="carrossel">
-    <div class="card" *ngFor="let imovel of imoveis">
-      <img [src]="imovel.imagem" alt="Imagem do imóvel" />
-      <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
-    </div>
+<div class="container">
+
+  <div *ngIf="carregando" class="spinner-container">
+    <div class="spinner"></div>
   </div>
+
+  <ng-container *ngIf="!carregando">
+    <div *ngIf="imoveisPaginados.length > 0; else nenhumImovel">
+      
+      <div class="grade">
+        <div class="card" *ngFor="let imovel of imoveisPaginados">
+          <img [src]="imovel.imagem" alt="Imagem do imóvel">
+          <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
+          <p><strong>Valor:</strong> R$ {{ imovel.valor }}</p>
+          <p><strong>Tipo:</strong> {{ imovel.tipo }}</p>
+        </div>
+      </div>
+
+      <div class="paginacao">
+        <button (click)="paginaAnterior()" [disabled]="paginaAtual === 1">Anterior</button>
+        <span>Página {{ paginaAtual }} de {{ totalPaginas }}</span>
+        <button (click)="proximaPagina()" [disabled]="paginaAtual === totalPaginas">Próxima</button>
+      </div>
+    </div>
+
+    <ng-template #nenhumImovel>
+      <div class="mensagem-vazia">
+        <p>Nenhum imóvel encontrado.</p>
+      </div>
+    </ng-template>
+  </ng-container>
+
 </div>
-  
-  <ng-template #carregando>
-    <p>Carregando imóveis...</p>
-  </ng-template>

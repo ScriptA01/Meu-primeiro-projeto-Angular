@@ -8,7 +8,7 @@
     <div *ngIf="imoveisPaginados.length > 0; else nenhumImovel">
       
       <div class="grade">
-        <div class="card" *ngFor="let imovel of imoveisPaginados">
+          <div class="card" *ngFor="let imovel of imoveisPaginados" (click)="abrirDetalhes(imovel)">
           <img [src]="imovel.imagem" alt="Imagem do imóvel">
           <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
           <p><strong>Valor:</strong> R$ {{ imovel.valor }}</p>

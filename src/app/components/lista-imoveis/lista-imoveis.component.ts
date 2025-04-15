@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ImovelService } from '../../imovel.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class ListaImoveisComponent {
   itensPorPagina = 4;
   totalPaginas = 1;
 
-  constructor(private imovelService: ImovelService) {}
+  constructor(private imovelService: ImovelService, private router: Router) {}
 
   ngOnInit(): void {
     this.carregando = true;
@@ -31,7 +31,10 @@ export class ListaImoveisComponent {
             imagem: imovel.imagem || '',
             endereco: imovel.endereco || '',
             valor: imovel.valor || '',
-            tipo: imovel.tipo || ''
+            tipo: imovel.tipo || '',
+            numero: imovel.numero || '',
+            descricao: imovel.descricao || '',
+            proprietario: imovel.numero || ''
           }));
 
           // Filtra apenas os imóveis completos
@@ -77,6 +80,9 @@ export class ListaImoveisComponent {
     }
   }
 
+  abrirDetalhes(imovel: any): void {
+    this.router.navigate(['/detalhes'], { state: { imovel } });
+  }
   
   
 }

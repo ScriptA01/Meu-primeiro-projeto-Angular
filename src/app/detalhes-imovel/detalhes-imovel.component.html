@@ -1,18 +1,59 @@
-<div class="detalhes-container" *ngIf="imovel">
-  <div class="imagem-container">
-    <img [src]="imovel.imagem" alt="Imagem do imóvel" />
-  </div>
+<div class="detalhes-container">
+  <div class="conteudo">
+    
+    <div class="imagem-container">
+      <img *ngIf="imovel?.imagem; else placeholder"
+           [src]="imovel.imagem"
+           alt="Imagem do imóvel"
+           style="max-width: 120px; max-height: 120px;">
+      <ng-template #placeholder>
+        <img src="https://via.placeholder.com/120" alt="Imagem indisponível">
+      </ng-template>
+    
+      
+      <div *ngIf="editando" class="form-group">
+        <label for="novaImagem">Nova imagem:</label>
+        <input type="file" id="novaImagem" (change)="selecionarNovaImagem($event)">
+      </div>
+    </div>
+    
 
-  <div class="info-container">
-    <h2>Detalhes do Imóvel</h2>
-    <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
-    <p><strong>Proprietário:</strong> {{ imovel.proprietario }}</p>
-    <p><strong>Descrição:</strong> {{ imovel.descricao }}</p>
-    <p><strong>Tipo de Negociação:</strong> {{ imovel.tipo }}</p>
-    <p><strong>Valor:</strong> R$ {{ imovel.valor }}</p>
+    <div class="info-container">
+      <h2>Detalhes do Imóvel</h2>
 
-    <button (click)="editar()">Editar</button>
-    <button (click)="excluir()">Excluir</button>
-    <button (click)="voltar()">Voltar</button>
+     
+
+      <p><strong>Endereço:</strong>
+        <span *ngIf="!editando">{{ imovel.endereco }}</span>
+        <input *ngIf="editando" [(ngModel)]="imovel.endereco">
+      </p>
+
+      <p><strong>Proprietário:</strong>
+        <span *ngIf="!editando">{{ imovel.proprietario }}</span>
+        <input *ngIf="editando" [(ngModel)]="imovel.proprietario">
+      </p>
+
+      <p><strong>Descrição:</strong>
+        <span *ngIf="!editando">{{ imovel.descricao }}</span>
+        <textarea *ngIf="editando" [(ngModel)]="imovel.descricao"></textarea>
+      </p>
+
+      <p><strong>Tipo de Negociação:</strong>
+        <span *ngIf="!editando">{{ imovel.tipo }}</span>
+        <input *ngIf="editando" [(ngModel)]="imovel.tipo">
+      </p>
+
+      <p><strong>Valor:</strong>
+        <span *ngIf="!editando">R$ {{ imovel.valor }}</span>
+        <input *ngIf="editando" type="number" [(ngModel)]="imovel.valor">
+      </p>
+
+      <div class="botoes-acao">
+        <button *ngIf="!editando" (click)="editar()">Editar</button>
+        <button *ngIf="editando" (click)="salvar()">Salvar</button>
+        <button (click)="voltar()">Voltar</button>
+        <button (click)="excluir()">Excluir</button>
+      </div>
+    </div>
   </div>
 </div>

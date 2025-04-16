@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonImovelComponent } from './button-imovel/button-imovel.component';
 import { ListaImoveisComponent } from './components/lista-imoveis/lista-imoveis.component';
@@ -9,6 +9,19 @@ import { ListaImoveisComponent } from './components/lista-imoveis/lista-imoveis.
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'projeto';
+  searchTerm = '';
+
+  @ViewChild(ListaImoveisComponent) listaImoveisComponent!: ListaImoveisComponent;
+
+  ngAfterViewInit() {
+    // Pode usar debounce se quiser deixar mais suave
+  }
+
+  onSearch(event: any) {
+    const termo = event.target.value.toLowerCase();
+    this.listaImoveisComponent.filtrarImoveis(termo);
+  }
+
 }

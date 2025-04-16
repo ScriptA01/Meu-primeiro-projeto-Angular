@@ -85,5 +85,19 @@ export class ListaImoveisComponent {
     this.router.navigate(['/detalhes'], { state: { imovel } });
   }
   
+  filtrarImoveis(termo: string): void {
+    if (!termo) {
+      this.atualizarPagina();
+      return;
+    }
+  
+    const filtrados = this.imoveis.filter(imovel =>
+      imovel.endereco.toLowerCase().includes(termo)
+    );
+  
+    this.imoveisPaginados = filtrados;
+    this.totalPaginas = Math.ceil(filtrados.length / this.itensPorPagina);
+    this.paginaAtual = 1;
+  }
   
 }

@@ -9,7 +9,12 @@
 <body>
     <header>
         <h1>Imobiliária H1</h1>
-        <input type="text" id="search" placeholder="Buscar imóveis...">
+        <input 
+        type="text" 
+        id="search" 
+        placeholder="Buscar imóveis..."
+        (input)="onSearch($event)"
+         >
     </header>
     
     <app-lista-imoveis></app-lista-imoveis>

@@ -34,7 +34,8 @@ export class ListaImoveisComponent {
             tipo: imovel.tipo || '',
             numero: imovel.numero || '',
             descricao: imovel.descricao || '',
-            proprietario: imovel.numero || ''
+            proprietario: imovel.numero || '',
+            idFirebase: imovel. idFirebase || ''
           }));
 
           // Filtra apenas os imóveis completos

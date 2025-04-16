@@ -1,17 +1,18 @@
 <div class="detalhes-container" *ngIf="imovel">
-    <div class="imagem-container">
-      <img [src]="imovel.imagem" alt="Imagem do imóvel" />
-    </div>
-  
-    <div class="info-container">
-      <h2>Detalhes do Imóvel</h2>
-  
-      <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
-      <p><strong>Proprietário:</strong> {{ imovel.proprietario }}</p>
-      <p><strong>Descrição:</strong> {{ imovel.descricao }}</p>
-      <p><strong>Tipo de Negociação:</strong> {{ imovel.tipo }}</p>
-      <p><strong>Valor:</strong> R$ {{ imovel.valor }}</p>
-  
-      <button (click)="voltar()">Voltar</button>
-    </div>
+  <div class="imagem-container">
+    <img [src]="imovel.imagem" alt="Imagem do imóvel" />
   </div>
+
+  <div class="info-container">
+    <h2>Detalhes do Imóvel</h2>
+    <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
+    <p><strong>Proprietário:</strong> {{ imovel.proprietario }}</p>
+    <p><strong>Descrição:</strong> {{ imovel.descricao }}</p>
+    <p><strong>Tipo de Negociação:</strong> {{ imovel.tipo }}</p>
+    <p><strong>Valor:</strong> R$ {{ imovel.valor }}</p>
+
+    <button (click)="editar()">Editar</button>
+    <button (click)="excluir()">Excluir</button>
+    <button (click)="voltar()">Voltar</button>
+  </div>
+</div>

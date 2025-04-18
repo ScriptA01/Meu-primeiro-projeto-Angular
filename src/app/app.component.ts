@@ -16,12 +16,17 @@ export class AppComponent implements AfterViewInit {
   @ViewChild(ListaImoveisComponent) listaImoveisComponent!: ListaImoveisComponent;
 
   ngAfterViewInit() {
-    // Pode usar debounce se quiser deixar mais suave
+    
   }
 
   onSearch(event: any) {
     const termo = event.target.value.toLowerCase();
     this.listaImoveisComponent.filtrarImoveis(termo);
+  }
+
+  limparFiltro() {
+    this.searchTerm = ''; 
+    window.location.reload();
   }
 
 }

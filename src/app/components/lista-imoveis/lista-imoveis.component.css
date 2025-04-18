@@ -8,6 +8,7 @@
   justify-content: center;
 }
 
+/* Estilo dos cards */
 .card {
   background-color: #f3f3f3;
   border-radius: 10px;
@@ -33,6 +34,7 @@
   color: #333;
 }
 
+/* Estilo da paginação */
 .paginacao {
   display: flex;
   justify-content: center;
@@ -55,6 +57,7 @@
   cursor: not-allowed;
 }
 
+/* Mensagem quando a lista estiver vazia */
 .mensagem-vazia {
   text-align: center;
   padding: 40px;
@@ -62,6 +65,7 @@
   font-size: 18px;
 }
 
+/* Spinner de carregamento */
 .spinner-container {
   display: flex;
   justify-content: center;
@@ -82,13 +86,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.card {
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.02);
 }

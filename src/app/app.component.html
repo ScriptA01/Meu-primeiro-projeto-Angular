@@ -15,6 +15,7 @@
         placeholder="Buscar imóveis..."
         (input)="onSearch($event)"
          >
+         <button id="limparFiltro" (click)="limparFiltro()">Limpar Filtro</button>
     </header>
     
     <app-lista-imoveis></app-lista-imoveis>

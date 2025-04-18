@@ -1,16 +1,26 @@
-<div class="modal" id="modal">
-  <form (ngSubmit)="salvar()">
+<div class="modal-overlay" id="modalOverlay" (click)="fecharModal()"></div>
+
+<div class="modal-wrapper">
+  <div class="modal" id="modal">
+    <button type="button" class="close-button" (click)="fecharModal()">&#x2715;</button>
+
+    <form (ngSubmit)="salvar()">
       <div class="form-group">
-        <label for="foto">Imagem:</label>
-        <input type="file" id="foto" (change)="selecionarFoto($event)">
+        <label for="foto" class="upload-label">
+          <mat-icon>add_a_photo</mat-icon>
+          <span>Adicionar imagem</span>
+        </label>
+        <input type="file" id="foto" (change)="selecionarFoto($event)" hidden>
+        <div class="image-feedback" *ngIf="imagemSelecionada">
+          📎 {{ imagemSelecionada }}
+        </div>
       </div>
-    
+
       <div class="form-group">
         <label for="endereco">Endereço:</label>
         <input type="text" id="endereco" [(ngModel)]="endereco" name="endereco">
       </div>
 
-      
       <div class="form-group">
         <label for="tipoNegociacao">Tipo de Negociação:</label>
         <select id="tipoNegociacao" [(ngModel)]="tipoNegociacao" name="tipoNegociacao">
@@ -21,34 +31,27 @@
         </select>
       </div>
 
-      
       <div class="form-group">
         <label for="valor">Valor (R$):</label>
         <input type="number" id="valor" [(ngModel)]="valor" name="valor" placeholder="Ex: 350000">
       </div>
 
       <div class="form-group">
-        <label for="numero">Número:</label>
+        <label for="numero">Número N°:</label>
         <input type="text" id="numero" [(ngModel)]="numero" name="numero">
       </div>
-    
+
       <div class="form-group">
         <label for="proprietario">Proprietário:</label>
         <input type="text" id="proprietario" [(ngModel)]="proprietario" name="proprietario">
       </div>
-    
+
       <div class="form-group">
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" [(ngModel)]="descricao" name="descricao" rows="3"></textarea>
       </div>
-    
-      <button type="submit">Salvar</button>
+
+      <button type="submit" class="save-button">Salvar</button>
     </form>
-</div>
-
-<div class="modal-overlay" id="modalOverlay" (click)="fecharModal()"></div>
-
-<div class="modal" id="modal">
-<form (ngSubmit)="salvar()">
-</form>
+  </div>
 </div>

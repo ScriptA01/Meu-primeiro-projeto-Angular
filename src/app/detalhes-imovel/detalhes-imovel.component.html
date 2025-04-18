@@ -38,10 +38,17 @@
         <textarea *ngIf="editando" [(ngModel)]="imovel.descricao"></textarea>
       </p>
 
+      <p><strong>Número N°:</strong>
+        <span *ngIf="!editando">{{ imovel.numero }}</span>
+        <textarea *ngIf="editando" [(ngModel)]="imovel.numero"></textarea>
+      </p>
+
       <p><strong>Tipo de Negociação:</strong>
         <span *ngIf="!editando">{{ imovel.tipo }}</span>
         <input *ngIf="editando" [(ngModel)]="imovel.tipo">
       </p>
+
+    
 
       <p><strong>Valor:</strong>
         <span *ngIf="!editando">R$ {{ imovel.valor }}</span>

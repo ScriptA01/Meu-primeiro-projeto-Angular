@@ -14,3 +14,4 @@ export class ButtonImovelComponent {
     this.mostrarCadastro = true; // Exibe o formulário
   }
 }
+  

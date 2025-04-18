@@ -28,19 +28,19 @@ export class ListaImoveisComponent {
       next: (res) => {
         if (res && Object.keys(res).length > 0) {
           const imoveisBrutos = Object.values(res).map((imovel: any) => ({
-            imagem: imovel.imagem || '',
+            imagem: imovel.imagem || 'caminho/para/imagem/default.jpg',  // Imagem padrão se não tiver
             endereco: imovel.endereco || '',
             valor: imovel.valor || '',
             tipo: imovel.tipo || '',
             numero: imovel.numero || '',
             descricao: imovel.descricao || '',
-            proprietario: imovel.numero || '',
-            idFirebase: imovel. idFirebase || ''
+            proprietario: imovel.proprietario || '',
+            idFirebase: imovel.idFirebase || ''
           }));
 
-          // Filtra apenas os imóveis completos
+          // Não filtra os imóveis sem foto, só garante que tenha dados importantes
           this.imoveis = imoveisBrutos.filter(imovel =>
-            imovel.imagem && imovel.endereco && imovel.valor && imovel.tipo
+            imovel.endereco && imovel.valor && imovel.tipo  // Garante que o imóvel tem dados essenciais
           );
 
           this.totalPaginas = Math.ceil(this.imoveis.length / this.itensPorPagina);
@@ -84,7 +84,7 @@ export class ListaImoveisComponent {
   abrirDetalhes(imovel: any): void {
     this.router.navigate(['/detalhes'], { state: { imovel } });
   }
-  
+
   filtrarImoveis(termo: string): void {
     if (!termo) {
       this.atualizarPagina();
@@ -101,3 +101,4 @@ export class ListaImoveisComponent {
   }
   
 }
+

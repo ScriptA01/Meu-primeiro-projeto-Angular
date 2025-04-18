@@ -20,4 +20,16 @@ describe('ButtonImovelComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('mostrarCadastro deve ser false inicialmente', () => {
+    expect(component.mostrarCadastro).toBeFalse();
+  });
+
+  it('mostrarCadastro deve virar true ao chamar greetForCadastro()', () => {
+    component.greetForCadastro();
+    expect(component.mostrarCadastro).toBeTrue();
+  });
+
 });
+
+

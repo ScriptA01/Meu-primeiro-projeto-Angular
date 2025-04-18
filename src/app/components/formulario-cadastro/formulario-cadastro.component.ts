@@ -2,26 +2,26 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ImovelService } from '../../imovel.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-formulario-cadastro',
   standalone: true,
-  imports: [MatIconModule, FormsModule],
+  imports: [MatIconModule, FormsModule, NgIf],
   templateUrl: './formulario-cadastro.component.html',
   styleUrl: './formulario-cadastro.component.css'
 })
 export class FormularioCadastroComponent {
-
   endereco: string = '';
   numero: string = '';
   proprietario: string = '';
   descricao: string = '';
+  tipoNegociacao: string = ''; 
+  valor: number | null = null;
+
   imagem: File | null = null;
   imagemBase64: string = '';
-  
-  // Novos campos:
-  tipoNegociacao: string = '';  // "venda", "locacao" ou "venda/locacao"
-  valor: number | null = null;
+  imagemSelecionada: string = ''; 
 
   constructor(private imovelService: ImovelService) {}
 
@@ -29,7 +29,7 @@ export class FormularioCadastroComponent {
     const input = event.target as HTMLInputElement;
     if (input?.files && input.files.length > 0) {
       this.imagem = input.files[0];
-
+      this.imagemSelecionada = this.imagem.name; 
       const reader = new FileReader();
       reader.onload = () => {
         this.imagemBase64 = reader.result as string;
@@ -45,8 +45,8 @@ export class FormularioCadastroComponent {
       proprietario: this.proprietario,
       descricao: this.descricao,
       imagem: this.imagemBase64,
-      tipo: this.tipoNegociacao,  
-      valor: this.valor           
+      tipo: this.tipoNegociacao,
+      valor: this.valor
     };
 
     console.log('📦 Dados do formulário:', dados_formulario);

@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { ImovelService } from '../../imovel.service';
 
+import localePt from '@angular/common/locales/pt'; // Importando o locale pt-BR
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt, 'pt-BR');
+
 @Component({
   selector: 'app-lista-imoveis',
   standalone: true,
@@ -30,7 +35,7 @@ export class ListaImoveisComponent {
           const imoveisBrutos = Object.values(res).map((imovel: any) => ({
             imagem: imovel.imagem || 'caminho/para/imagem/default.jpg',  // Imagem padrão se não tiver
             endereco: imovel.endereco || '',
-            valor: imovel.valor || '',
+            valor: parseFloat(imovel.valor) || 0,
             tipo: imovel.tipo || '',
             numero: imovel.numero || '',
             descricao: imovel.descricao || '',
@@ -38,9 +43,8 @@ export class ListaImoveisComponent {
             idFirebase: imovel.idFirebase || ''
           }));
 
-          // Não filtra os imóveis sem foto, só garante que tenha dados importantes
           this.imoveis = imoveisBrutos.filter(imovel =>
-            imovel.endereco && imovel.valor && imovel.tipo  // Garante que o imóvel tem dados essenciais
+            imovel.endereco || imovel.valor || imovel.tipo || imovel.numero || imovel.descricao || imovel.proprietario || imovel.idFirebase
           );
 
           this.totalPaginas = Math.ceil(this.imoveis.length / this.itensPorPagina);

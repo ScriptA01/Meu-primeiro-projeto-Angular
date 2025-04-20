@@ -51,8 +51,16 @@
     
 
       <p><strong>Valor:</strong>
-        <span *ngIf="!editando">R$ {{ imovel.valor }}</span>
-        <input *ngIf="editando" type="number" [(ngModel)]="imovel.valor">
+        <span *ngIf="!editando">R$ {{ imovel.valor | number:'1.2-2' }}</span>
+      
+        <input 
+          *ngIf="editando"
+          type="text"
+          [(ngModel)]="valorFormatado"
+          inputmode="decimal"
+          pattern="[0-9.,]*"
+          placeholder="Ex: 1.234,56"
+        >
       </p>
 
       <div class="botoes-acao">
@@ -63,4 +71,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="isLoading" class="loader-overlay">
+  <div class="loader"></div>
+  <p>Salvando imóvel...</p>
 </div>

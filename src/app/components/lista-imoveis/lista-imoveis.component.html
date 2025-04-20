@@ -14,7 +14,7 @@
           <img [src]="imovel.imagem || 'caminho/para/imagem/default.jpg'" alt="Imagem do imóvel">
           
           <p><strong>Endereço:</strong> {{ imovel.endereco }}</p>
-          <p><strong>Valor:</strong> R$ {{ imovel.valor }}</p>
+          <p><strong>Valor:</strong> {{ imovel.valor | currency:'BRL':'symbol':'1.2-2' }}</p>
           <p><strong>Tipo:</strong> {{ imovel.tipo }}</p>
         </div>
       </div>

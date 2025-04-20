@@ -14,7 +14,7 @@ describe('DetalhesImovelComponent', () => {
   const mockImovel = {
     imagem: 'img.png',
     endereco: 'Rua Teste',
-    valor: 123000,
+    valor: '123000',
     tipo: 'aluguel',
     numero: '10',
     descricao: 'Apartamento legal',
